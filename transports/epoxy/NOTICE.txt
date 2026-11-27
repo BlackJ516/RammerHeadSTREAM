@@ -1,0 +1,9 @@
+Epoxy transport plug-in
+
+This folder contains the built files (dist/) of the npm package @mercuryworkshop/epoxy-transport@3.0.2.
+License: AGPL-3.0-only
+Source code: https://github.com/MercuryWorkshop/epoxy-transport
+npm: https://www.npmjs.com/package/@mercuryworkshop/epoxy-transport/v/3.0.2
+
+Keep this notice and the license with these files. It can be removed or replaced with:
+  npm run transport -- remove epoxy

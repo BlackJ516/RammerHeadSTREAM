@@ -1,0 +1,14 @@
+{
+  "contract": 1,
+  "id": "epoxy",
+  "name": "Epoxy",
+  "version": "3.0.2",
+  "description": "The Epoxy transport: end-to-end TLS with epoxy-tls over a Wisp connection.",
+  "license": "AGPL-3.0-only",
+  "source": "npm:@mercuryworkshop/epoxy-transport@3.0.2",
+  "assets": "public",
+  "engines": [
+    "*"
+  ],
+  "notes": "An engine that can use it, and a Wisp server endpoint."
+}

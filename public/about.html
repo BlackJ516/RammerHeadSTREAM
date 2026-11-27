@@ -1,0 +1,40 @@
+<!--page {"title":"About","description":"What Rammerhead Stream is, who runs it and how it is built."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>About {{site.name}}</h1>
+        <p class="lead">{{site.name}} is a web proxy: a service that opens websites for you from its own server and shows them in your browser. It adds accounts, browser tabs, bookmarks and history on top, so it is comfortable to use every day.</p>
+
+        <h2>What a web proxy does</h2>
+        <p>When you visit a website normally, your device connects to it directly. With a web proxy, your request goes to the proxy first. The proxy loads the page and passes it back to you, so the website sees the proxy server's address instead of your device's address. People use proxies to keep their own address out of the logs of the sites they visit, to keep a separate set of cookies for a browsing session, and for the convenience of having tabs and bookmarks on one hosted page.</p>
+        <p>A proxy is not an anonymity tool. The operator of a proxy can see the traffic that passes through it, and the websites you visit still see what you do on them. That is why this site publishes a clear <a href="/privacy">privacy policy</a> and asks everyone to follow its <a href="/terms">terms</a>.</p>
+
+        <h2>What it offers</h2>
+        <ul>
+            <li><strong>Your own account.</strong> Everyone signs up with their own username and password. Passwords can contain any characters, and the server stores only a salted one-way hash, never the password itself.</li>
+            <li><strong>Real browser tabs.</strong> Each address opens in its own browser tab. The main page lists your open tabs with back, forward, reload and close controls.</li>
+            <li><strong>Bookmarks and history on your device.</strong> They are saved in your own browser, separately for each account, and are not sent to the server.</li>
+            <li><strong>Safety rules.</strong> Addresses that point to private or internal networks, local files and non-web services are refused, so the service cannot be used to reach places it should not.</li>
+            <li><strong>Choice of connection method.</strong> When the installed engine offers more than one transport, you can pick one in Settings and name a fallback.</li>
+        </ul>
+
+        <h2>Who runs this site</h2>
+        <p>{{#if operator}}This site is run by {{site.operator}}.{{else}}This site is run by its operator.{{/if}}</p>
+
+        <h2>How it is built</h2>
+        <p>{{site.name}} was created by BlackJ. It builds on Rammerhead, a web proxy by Simon Cheng (binary-person). The part that fetches and rewrites pages is a separate, replaceable engine, so the service can follow changes on the web without the rest of the site having to change.</p>
+
+        <h2>Free software</h2>
+        <p>{{site.name}} is free software, released under the GNU Affero General Public License, version 3. You may use, study, change and share it under that license. If you run a changed version as a web service, the license requires you to offer its users the source code of your version.{{#if sourceUrl}} The source code of this site is available at <a href="{{site.sourceUrl}}" rel="noopener">{{site.sourceUrl}}</a>.{{/if}} The software it builds on and bundles is credited in <code>THIRD-PARTY-NOTICES.md</code>.</p>
+
+        <h2>Our approach</h2>
+        <p>We keep the data we hold to what is needed to run accounts and keep the service safe. We do not show advertising on this site and we do not add anything to the pages you open through it. Please read the <a href="/privacy">privacy policy</a> for the details.</p>
+    </main>
+    {{include:footer}}
+</body>
+</html>

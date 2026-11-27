@@ -1,0 +1,32 @@
+<!--page {"title":"Report abuse","description":"How to report abuse, illegal content or a security problem on this service."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>Report abuse</h1>
+        <p class="lead">If someone is using {{site.name}} to cause harm, or you have found a security problem, here is how to report it.</p>
+        <section class="card">
+            <h2>How to report</h2>
+            <p>{{#if reportEmail}}Send the report to <a href="mailto:{{site.reportEmail}}">{{site.reportEmail}}</a> with the subject <em>Abuse report</em>.{{else}}This site does not publish an address for abuse reports.{{/if}}</p>
+            {{#if reportEmail}}<p>Please include:</p>
+            <ul>
+                <li>what happened, and the date and time (with your time zone);</li>
+                <li>the web address involved, and the username if you know it;</li>
+                <li>screenshots or other evidence, if you have them;</li>
+                <li>for a security problem, the steps needed to reproduce it. Please do not publish it before we have had a chance to fix it.</li>
+            </ul>
+            <p class="muted small">Do not send passwords or other secrets.</p>{{/if}}
+        </section>
+        {{#if reportEmail}}<h2>What happens next</h2>
+        <p>We review reports as soon as we reasonably can. Depending on what we find, we may remove content or sessions, suspend or delete accounts, and, where the law requires it, pass information to the authorities. The rules for using the service are in the <a href="/terms">terms of use</a>.</p>
+        {{/if}}
+        <h2>Websites that are not ours</h2>
+        <p>Content on a website you open through the service is controlled by that website. To have it removed, contact the website's owner. We can only act on how the service itself is being used.</p>
+    </main>
+    {{include:footer}}
+</body>
+</html>

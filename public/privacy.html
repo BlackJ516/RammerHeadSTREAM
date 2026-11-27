@@ -1,0 +1,50 @@
+<!--page {"title":"Privacy policy","description":"What data this service stores, where, for how long, and what choices you have."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>Privacy policy</h1>
+        <p class="lead">This policy explains what {{site.name}} stores about you and why. {{#if operator}}The service is operated by {{site.operator}}.{{else}}The service is run by its operator.{{/if}}</p>
+
+        <h2>What we store</h2>
+        <h3>Your account</h3>
+        <p>When you create an account we store your username, a salted one-way hash of your password (never the password itself), and the time the account was created. We cannot read your password and cannot recover it.</p>
+        <h3>In your browser</h3>
+        <p>This site uses your browser's local storage, not cookies, to keep you signed in and to remember your settings. It holds a sign-in token, your theme and preferences, your bookmarks, your history and the identifier of your browsing session. Bookmarks and history stay in your browser and are not sent to us. You can remove all of it by clearing this site's data in your browser or by signing out.</p>
+        <h3>Your browsing session on the server</h3>
+        <p>To open websites for you, the server keeps a browsing session tied to your account. It holds the cookies and site data that the websites you visit set, and your session settings. It is removed when you press <em>Start a fresh browsing session</em>, when the session is deleted, and automatically after it has been idle for a few days.</p>
+        <h3>Server logs</h3>
+        <p>Like most services, the server keeps logs for security and troubleshooting. They can include your IP address, the time, account events such as sign-ups and failed sign-ins, and technical error details. The operator may switch on more detailed logging temporarily to fix a problem. Logs are kept only as long as they are needed for these purposes.</p>
+
+        <h2>The websites you visit</h2>
+        <p>When you open a website through this service, the request is made by the server. The website sees the server's address rather than yours, receives anything you type into it, and handles that information under its own privacy policy. We do not control those websites and do not review their content. Information you enter on them, including passwords, passes through the server. Only sign in to accounts you are comfortable exposing to the operator of this service.</p>
+
+        <h2>Advertising, analytics and cookies</h2>
+        <p>This site does not show advertising and does not use advertising or analytics cookies. It does not add anything to the pages you open through it, apart from the technical code needed to make them work through the proxy.</p>
+
+        <h2>How we use data</h2>
+        <p>We use the data above only to run accounts, deliver the service, keep it secure, prevent abuse and fix problems. We do not sell personal data.</p>
+
+        <h2>Security</h2>
+        <p>Passwords are stored as salted hashes, sign-in attempts are rate limited, and the service refuses requests aimed at private networks. No service can promise perfect security, and you should use the site over HTTPS.</p>
+
+        <h2>Your choices</h2>
+        <ul>
+            <li>Sign out, or clear this site's data in your browser, to remove what is stored on your device.</li>
+            <li>Use <em>Start a fresh browsing session</em> in Settings to delete your server-side session data.</li>
+            <li>Delete your account yourself in Settings (it asks for your password). That removes your account and stops anyone signing in to it, and your browsing session is removed with it. Routine server logs are not affected; they are kept only as described above.</li>
+        </ul>
+
+        <h2>Children</h2>
+        <p>The service is not intended for children under 13, and we do not knowingly collect their data.</p>
+
+        <h2>Changes</h2>
+        <p>We may update this policy. The current version is always the one on this page.</p>
+    </main>
+    {{include:footer}}
+</body>
+</html>

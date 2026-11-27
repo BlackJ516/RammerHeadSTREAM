@@ -1,0 +1,130 @@
+<!--page {"title":"How to load an engine","description":"Install, replace and check the browsing engine, and which transports it can offer."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>How to load an engine</h1>
+        <p class="lead">The <strong>engine</strong> is the part that fetches and rewrites web pages. It lives in the folder <code>engines/active/</code>. The interface, accounts and safety rules are separate, so you can swap the engine for a newer one (for example <em>RME 2.3</em>) without touching anything else. The <strong>folder itself stays</strong>; only what is <em>inside</em> it changes.</p>
+
+        <section class="card" aria-labelledby="live-h">
+            <h2 id="live-h">Engine installed right now</h2>
+            <p id="live-status" role="status">Checking&hellip;</p>
+            <noscript><p class="muted">Turn on JavaScript to see the live status, or run <code>npm run engine -- status</code>.</p></noscript>
+        </section>
+
+        <section aria-labelledby="quick-h">
+            <h2 id="quick-h">Replace the engine (recommended way)</h2>
+            <p>Run these in a terminal, in the Rammerhead Stream folder. The installer backs up the old engine for you.</p>
+            <ol class="steps">
+                <li>
+                    <strong>Stop the app.</strong> Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal where it is running.
+                </li>
+                <li>
+                    <strong>Install the new engine</strong>: point it at the folder (or <code>.tgz</code> / <code>.zip</code>-extracted folder) that contains the new engine.
+                    <div class="cmd"><pre><code>npm run engine -- install /path/to/new-engine</code></pre><button type="button" class="copy" data-copy="npm run engine -- install /path/to/new-engine" aria-label="Copy install command">Copy</button></div>
+                    <p class="hint">This reads and checks the engine's <code>manifest.json</code> and moves the old engine to <code>engines/_backups/</code>. It does <em>not</em> run the new engine.</p>
+                </li>
+                <li>
+                    <strong>Set it up</strong>: installs the engine's own dependencies and builds it.
+                    <div class="cmd"><pre><code>npm run engine:setup</code></pre><button type="button" class="copy" data-copy="npm run engine:setup" aria-label="Copy setup command">Copy</button></div>
+                    <p class="hint">Only this step and the next one run the new engine's code, so look it over first if you do not fully trust where it came from.</p>
+                </li>
+                <li>
+                    <strong>Check it works</strong>: loads the engine and tests it.
+                    <div class="cmd"><pre><code>npm run engine -- validate</code></pre><button type="button" class="copy" data-copy="npm run engine -- validate" aria-label="Copy validate command">Copy</button></div>
+                    <p class="hint">You should see <code>VALIDATION PASSED</code>. If not, read the message, or roll back (below).</p>
+                </li>
+                <li>
+                    <strong>Start the app.</strong>
+                    <div class="cmd"><pre><code>npm start</code></pre><button type="button" class="copy" data-copy="npm start" aria-label="Copy start command">Copy</button></div>
+                    <p class="hint">Reload this page: the engine name and version above should be the new one.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section aria-labelledby="rollback-h">
+            <h2 id="rollback-h">Something went wrong? Roll back</h2>
+            <div class="cmd"><pre><code>npm run engine -- rollback</code></pre><button type="button" class="copy" data-copy="npm run engine -- rollback" aria-label="Copy rollback command">Copy</button></div>
+            <p>This puts the previous engine back (and keeps the one you just tried as a backup). <code>npm run engine -- backups</code> lists every backup, and <code>npm run engine -- rollback &lt;name&gt;</code> restores a specific one.</p>
+        </section>
+
+        <section aria-labelledby="manual-h">
+            <h2 id="manual-h">The manual way (same result)</h2>
+            <ol class="steps">
+                <li>Stop the app.</li>
+                <li>Open the folder <code>engines/active/</code>. Copy its contents somewhere safe if you may want the old engine back.</li>
+                <li><strong>Delete everything inside it</strong>, but keep the <code>active</code> folder itself.</li>
+                <li>Copy the new engine's files into <code>engines/active/</code> so that <code>manifest.json</code> sits directly inside it (not in a sub-folder).</li>
+                <li>Run <code>npm run engine:setup</code>, then <code>npm run engine -- validate</code>, then <code>npm start</code>.</li>
+            </ol>
+        </section>
+
+        <section aria-labelledby="valid-h">
+            <h2 id="valid-h">What makes an engine valid</h2>
+            <p>An engine is a folder with a <code>manifest.json</code> and an entry file:</p>
+            <pre class="block"><code>engines/active/
+  manifest.json      describes the engine (below)
+  index.js           exports create(host) and returns the engine
+  package.json       its own dependencies (optional)</code></pre>
+            <pre class="block"><code>{
+  "contract": 1,
+  "id": "my-engine",
+  "name": "My Engine",
+  "version": "2.3.0",
+  "entry": "index.js",
+  "node": ">=20",
+  "capabilities": { "websocket": true, "scriptEngines": ["js"] }
+}</code></pre>
+            <p><strong>Transports.</strong> An engine lists the connection methods it can use in <code>capabilities.transports</code> (for example <code>["http", "libcurl", "epoxy"]</code>). Settings only offers what the installed engine lists, and a transport the engine does not list is refused. <strong>Make sure your engine really supports a transport before listing it:</strong> a transport only works if the engine is built and paired for it. See <code>docs/ENGINES.md</code>.</p>
+            <p><code>contract</code> is the engine-interface version the engine was written for. This app supports contract <strong>1</strong>. The full list of what <code>create(host)</code> must return is in <code>docs/ENGINES.md</code> in the project folder.</p>
+        </section>
+
+        <section aria-labelledby="transports">
+            <h2 id="transports">Transports (plug-ins)</h2>
+            <p>A <strong>transport</strong> is the method used to carry the engine's requests to the web. The built-in HTTP method is always there. <strong>libcurl</strong> and <strong>Epoxy</strong> come with the project as plug-ins in <code>transports/&lt;name&gt;/</code>. You can remove them, replace them, or add others the same way you replace an engine.</p>
+            <p class="notice"><strong>Compatibility.</strong> A transport can only be used if the installed engine supports it. Installing a transport that your engine does not support does nothing: Settings will list it as unusable and refuse to select it. Before you add a transport, make sure your engine is built for it.</p>
+            <ol class="steps">
+                <li><strong>See what is installed:</strong>
+                    <div class="cmd"><pre><code>npm run transport -- list</code></pre><button type="button" class="copy" data-copy="npm run transport -- list" aria-label="Copy list command">Copy</button></div>
+                </li>
+                <li><strong>Add another transport</strong>, or put back libcurl or Epoxy after removing them (this downloads the official package from npm; add <code>--accept-license</code> after reading its license):
+                    <div class="cmd"><pre><code>npm run transport -- add libcurl --accept-license</code></pre><button type="button" class="copy" data-copy="npm run transport -- add libcurl --accept-license" aria-label="Copy add libcurl command">Copy</button></div>
+                    <div class="cmd"><pre><code>npm run transport -- add epoxy --accept-license</code></pre><button type="button" class="copy" data-copy="npm run transport -- add epoxy --accept-license" aria-label="Copy add epoxy command">Copy</button></div>
+                    <p class="hint">Or install a plug-in you already have: <code>npm run transport -- install /path/to/transport</code>.</p>
+                </li>
+                <li><strong>Remove one</strong> (it is backed up first, so it can be brought back with <code>npm run transport -- rollback</code>):
+                    <div class="cmd"><pre><code>npm run transport -- remove libcurl</code></pre><button type="button" class="copy" data-copy="npm run transport -- remove libcurl" aria-label="Copy remove command">Copy</button></div>
+                </li>
+                <li><strong>Restart the server</strong>, then pick the transport in <em>Settings &rarr; Connection</em>, where you can also name a fallback and test it.</li>
+            </ol>
+            <p><strong>Licenses.</strong> libcurl and Epoxy are published under the AGPL-3.0, the same license as this project, and ship with their license text and a notice naming the exact package. Anything else you add has its own license; the command shows it before it installs anything.</p>
+            <p><strong>Security.</strong> Transports of this kind usually connect through a Wisp server, which relays connections for whoever can reach it. Make sure any such server requires sign-in and refuses private networks, in the same way this site does.</p>
+        </section>
+
+        <section aria-labelledby="trouble-h">
+            <h2 id="trouble-h">If the engine is not working</h2>
+            <p>The app keeps running and tells you why. The status above (and the banner inside the app) will be one of:</p>
+            <div class="tablewrap">
+            <table>
+                <thead><tr><th scope="col">Status</th><th scope="col">What it means</th><th scope="col">What to do</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row"><code>ready</code></th><td>Engine loaded and healthy.</td><td>Nothing.</td></tr>
+                    <tr><th scope="row"><code>missing</code></th><td><code>engines/active/</code> is empty or has no <code>manifest.json</code>.</td><td>Install an engine (steps above). Make sure <code>manifest.json</code> is directly inside the folder.</td></tr>
+                    <tr><th scope="row"><code>invalid-manifest</code></th><td><code>manifest.json</code> is broken, or the entry file does not export <code>create()</code>.</td><td>Run <code>npm run engine -- status</code> to see each problem.</td></tr>
+                    <tr><th scope="row"><code>incompatible</code></th><td>Written for a different contract version, needs a newer Node.js, or does not provide everything the contract requires.</td><td>Get an engine built for contract 1, or update Rammerhead Stream.</td></tr>
+                    <tr><th scope="row"><code>failed</code></th><td>The engine threw an error while loading (often missing dependencies).</td><td>Run <code>npm run engine:setup</code>, then <code>npm run engine -- validate</code> and read the message.</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="hint">The app never silently switches to an incompatible engine. While the engine is unavailable you can still sign in; browsing is switched off until it is fixed.</p>
+        </section>
+
+            </main>
+    {{include:footer}}
+    <script src="/engine.js"></script>
+</body>
+</html>

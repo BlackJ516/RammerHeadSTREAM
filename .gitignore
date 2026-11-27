@@ -1,0 +1,44 @@
+node_modules/
+
+# don't commit generated builds or env files
+src/client/*.min.*
+src/client/hammerhead.js
+src/client/worker-hammerhead.js
+.env
+
+# don't commit session and cache data
+sessions/*
+cache-js/*
+
+# but commit the empty folders
+!sessions/.gitkeep
+!cache-js/.gitkeep
+
+# ignore any custom configurations
+/config.js
+data/*
+!data/.gitkeep
+
+# engine folder: dependencies and generated builds stay out of git
+engines/*/node_modules/
+engines/*/client/*.min.*
+engines/*/client/hammerhead.js
+engines/*/client/worker-hammerhead.js
+engines/_backups/*
+!engines/_backups/.gitkeep
+engines/*/wasm/target/
+
+# Engines and transports you install yourself stay out of this copy's history: they are added with
+# `npm run engine -- install` / `npm run transport -- add`, and their backups stay local.
+# The two basic transports (libcurl and Epoxy) ship with the project, so they are tracked.
+engines/active/*
+!engines/active/.gitkeep
+engines/_backups/*
+!engines/_backups/.gitkeep
+transports/*
+!transports/.gitkeep
+!transports/libcurl/
+!transports/epoxy/
+!transports/_backups/
+transports/_backups/*
+!transports/_backups/.gitkeep

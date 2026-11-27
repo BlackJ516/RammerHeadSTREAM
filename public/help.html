@@ -1,0 +1,49 @@
+<!--page {"title":"Help","description":"Answers to common questions about accounts, tabs, bookmarks, connection methods and pages that do not load."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>Help</h1>
+        <p class="lead">Quick answers about using {{site.name}}. To report abuse, use the <a href="/report">report page</a>.</p>
+
+        <h2>Getting started</h2>
+        <h3>How do I begin?</h3>
+        <p>Open the <a href="/">main page</a>, choose <em>Create account</em>, pick a username and a password, then type a web address or a search into the address bar and press Go. The page opens in a new browser tab.</p>
+        <h3>What can my username and password contain?</h3>
+        <p>Anything: letters, numbers, spaces, symbols, emoji, in any language. A username needs 3 to 32 characters and a password at least 8. Capital letters in a username are ignored, so <em>Sam</em> and <em>sam</em> are the same account. A few very common passwords are not accepted.</p>
+        <h3>Why can't I create an account?</h3>
+        <p>The message tells you which box to fix. The usual reasons are a password that is too short, two password boxes that do not match, a username that is already taken, or, on some servers, a missing invite code. Servers that need an invite code say so on the sign-up screen.</p>
+        <h3>I forgot my password.</h3>
+        <p>Passwords cannot be recovered. The server never stores your password, only a one-way hash of it, so nobody, including whoever runs this site, can read it or reset it for you. If you forget it, create a new account. Your bookmarks and history stay in your browser under the old username.</p>
+
+        <h2>Tabs, bookmarks and history</h2>
+        <h3>How do tabs work?</h3>
+        <p>Every address opens in its own browser tab, and the main page keeps a list of them with back, forward, reload and close buttons. If your browser blocks pop-ups, the page opens in the current tab instead; allow pop-ups for this site to use tabs. The list is kept while the main page stays open.</p>
+        <h3>Where are my bookmarks and history?</h3>
+        <p>In your own browser, saved per account. They do not follow you to another browser or device, and clearing your browser's site data removes them. They are never sent to the server.</p>
+        <h3>What does "Start a fresh browsing session" do?</h3>
+        <p>Cookies and site data from the websites you visit are kept in a browsing session on the server. This button deletes that session, so the sites no longer recognise you. Idle sessions are also removed automatically after a few days.</p>
+
+        <h2>When a page does not work</h2>
+        <h3>A website looks broken or will not load.</h3>
+        <p>Some websites, especially complex web apps and video players, depend on features a proxy cannot always reproduce. Try reloading, then <em>Start a fresh browsing session</em> in Settings. If Settings lists more than one transport, try another one.</p>
+        <h3>What are transports?</h3>
+        <p>A transport is the method used to carry requests to the web. The built-in HTTP method is always the starting point. If the installed engine supports others, such as libcurl or Epoxy, they appear in <em>Settings &rarr; Connection</em>. You can name a fallback, and the page will switch to it if the first one fails its check. A transport only appears when the engine supports it.</p>
+        <h3>Why was an address refused?</h3>
+        <p>For safety the service refuses addresses on private or internal networks, local files, and ports used by mail servers and databases. Ordinary public websites are not affected.</p>
+
+        <h2>Safety</h2>
+        <h3>Is it safe to sign in to other websites here?</h3>
+        <p>The sites you use through any proxy are visible to the proxy's operator. Only enter passwords for important accounts if you trust the operator, and read the <a href="/privacy">privacy policy</a> first.</p>
+        <h3>How do I report a problem or abuse?</h3>
+        <p>Use the <a href="/report">report page</a>.</p>
+        {{#if engineGuide}}<h2>Running your own copy</h2>
+        <p>If you run this software yourself, the <a href="/engine">engine guide</a> explains how to install and replace the engine.</p>{{/if}}
+    </main>
+    {{include:footer}}
+</body>
+</html>

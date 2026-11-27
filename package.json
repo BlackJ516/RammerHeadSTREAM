@@ -1,0 +1,49 @@
+{
+  "name": "rammerhead",
+  "version": "1.2.0",
+  "description": "Rammerhead Stream - a web proxy with accounts, tabs, replaceable engines and transports. Created by BlackJ. Free software (AGPL-3.0).",
+  "scripts": {
+    "start": "node src/server.js",
+    "setup": "npm ci --ignore-scripts && node scripts/engine.js hint",
+    "test": "node --test test/*.test.js engines/active/test/*.test.js",
+    "lint": "eslint .",
+    "format": "prettier --write 'src/**/*.js'",
+    "auth": "node src/cli/auth.js",
+    "engine": "node scripts/engine.js",
+    "engine:setup": "node scripts/engine.js setup",
+    "transport": "node scripts/transport.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binary-person/rammerhead.git"
+  },
+  "author": "BlackJ",
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/binary-person/rammerhead/issues"
+  },
+  "homepage": "https://github.com/binary-person/rammerhead#readme",
+  "dependencies": {
+    "async-exit-hook": "^2.0.1",
+    "sticky-session-custom": "file:vendor/sticky-session-custom"
+  },
+  "devDependencies": {
+    "dotenv-flow": "^4.1.0",
+    "eslint": "^10.0.0",
+    "jsdom": "^30.1.3",
+    "prettier": "^3.0.0",
+    "@eslint/js": "^10.0.0",
+    "globals": "^15.0.0"
+  },
+  "resolutions": {
+    "tmp": "0.2.1"
+  },
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true,
+  "overrides": {
+    "minimatch": "^11.0.4"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sticky-session-custom",
+  "version": "1.2.1-stream.1",
+  "description": "Vendored copy of sticky-session-custom 1.2.1 (MIT, by binary-person) for Rammerhead Stream, with the vulnerable `ip` dependency replaced by a local toBuffer().",
+  "main": "./lib/sticky-session",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "debug": "^4.4.0",
+    "http-parser-js": "^0.5.10"
+  },
+  "repository": "git+https://github.com/binary-person/sticky-session-custom.git"
+}

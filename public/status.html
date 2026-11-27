@@ -1,0 +1,25 @@
+<!--page {"title":"Status","description":"Whether this service is available right now."} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{include:head}}
+</head>
+<body class="docpage">
+    {{include:header}}
+    <main id="main" class="doc" tabindex="-1">
+        <h1>Status</h1>
+        <p class="lead">What is working right now. This page checks the service each time you open it.</p>
+        <section class="card" aria-live="polite">
+            <dl class="facts" id="status-list">
+                <dt>Service</dt><dd id="st-service">Checking&hellip;</dd>
+                <dt>Browsing engine</dt><dd id="st-engine">Checking&hellip;</dd>
+                <dt>Account sign-ups</dt><dd id="st-signup">Checking&hellip;</dd>
+                <dt>Checked</dt><dd id="st-time">&hellip;</dd>
+            </dl>
+        </section>
+        <p class="muted small">If something is not working, try again in a few minutes. The <a href="/help">help page</a> covers the most common problems.</p>
+        <script src="/status.js"></script>
+    </main>
+    {{include:footer}}
+</body>
+</html>

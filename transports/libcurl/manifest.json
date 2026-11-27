@@ -1,0 +1,14 @@
+{
+  "contract": 1,
+  "id": "libcurl",
+  "name": "libcurl",
+  "version": "2.0.6",
+  "description": "Requests are made by libcurl compiled to WebAssembly, with end-to-end TLS, over a Wisp connection.",
+  "license": "AGPL-3.0-only",
+  "source": "npm:@mercuryworkshop/libcurl-transport@2.0.6",
+  "assets": "public",
+  "engines": [
+    "*"
+  ],
+  "notes": "An engine that can use it, and a Wisp server endpoint."
+}
